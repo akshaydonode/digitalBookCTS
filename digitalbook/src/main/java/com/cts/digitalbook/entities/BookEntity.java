@@ -8,43 +8,48 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "BOOK_DETAILS")
 public class BookEntity {
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "BOOK_ID")
 	private int bookId;
-	
+
 	@Column(name = "BOOK_TITLE")
 	private String title;
-	
+
 	@Column(name = "CATEGORY")
 	private String category;
-	
+
 	@Column(name = "PRICE")
 	private double price;
-	
+
 	@Column(name = "PUBLISHER")
 	private String publisher;
-	
+
 	@Column(name = "PUBLISHED")
 	private Date published;
-	
-	@Column(name = "CHAPTERS")
-	private String Chapters;
-	
+
+	@Column(name = "CONTENTS")
+	private String contents;
+
 	@Column(name = "IS_ACTIVE")
-	private boolean isActive;
-	
+	private boolean active;
+
 	@Lob
 	@Column(name = "BOOK_LOGO")
 	private byte[] logo;
+
+	@OneToOne
+	@JoinColumn(name = "AUTHOR_ID")
+	private BookEntity authorId;
 
 	public int getBookId() {
 		return bookId;
@@ -94,20 +99,20 @@ public class BookEntity {
 		this.published = published;
 	}
 
-	public String getChapters() {
-		return Chapters;
+	public String getContents() {
+		return contents;
 	}
 
-	public void setChapters(String chapters) {
-		Chapters = chapters;
+	public void setContents(String chapters) {
+		contents = chapters;
 	}
 
-	public boolean isActive() {
-		return isActive;
+	public boolean getActive() {
+		return active;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public byte[] getLogo() {
@@ -118,13 +123,19 @@ public class BookEntity {
 		this.logo = logo;
 	}
 
+	public BookEntity getAuthorId() {
+		return authorId;
+	}
+
+	public void setAuthorId(BookEntity authorId) {
+		this.authorId = authorId;
+	}
+
 	@Override
 	public String toString() {
-		return "Book [bookId=" + bookId + ", title=" + title + ", category=" + category + ", price=" + price
-				+ ", publisher=" + publisher + ", published=" + published + ", Chapters=" + Chapters + ", isActive="
-				+ isActive + ", logo=" + Arrays.toString(logo) + "]";
+		return "BookEntity [bookId=" + bookId + ", title=" + title + ", category=" + category + ", price=" + price
+				+ ", publisher=" + publisher + ", published=" + published + ", contents=" + contents + ", active="
+				+ active + ", logo=" + Arrays.toString(logo) + ", authorId=" + authorId + "]";
 	}
-	
-	
 
 }

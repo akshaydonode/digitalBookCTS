@@ -8,5 +8,6 @@ public interface AuthorService {
 	public String registerAuthor(AuthorEntity author);
 
 	public String authorLogin(AuthorLoginDTO authorLoginDTO);
+	
 
 }

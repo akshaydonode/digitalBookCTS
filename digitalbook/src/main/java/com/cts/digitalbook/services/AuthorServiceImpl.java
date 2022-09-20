@@ -20,11 +20,11 @@ public class AuthorServiceImpl implements AuthorService {
 
 		if (!authorEntity.getAuthorEmail().isEmpty() && !authorEntity.getPassword().isEmpty()
 				&& !authorEntity.getAuthorName().isEmpty()) {
-			
+
 			if (Objects.isNull(authorRepository.findByEmailId(authorEntity.getAuthorEmail()))) {
-				
+
 				authorRepository.save(authorEntity);
-				//return "Author Registered Successfully...";
+
 			} else {
 				return "Author EmailID id already Exit. Please use the same or create new account. Thank You !!!";
 			}
