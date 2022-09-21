@@ -1,11 +1,15 @@
 package com.cts.digitalbook.services;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cts.digitalbook.dtos.BookSearchDTO;
+import com.cts.digitalbook.entities.AuthorEntity;
 import com.cts.digitalbook.entities.BookEntity;
+import com.cts.digitalbook.repositories.AuthorRepository;
 import com.cts.digitalbook.repositories.BookRepository;
 
 @Service
@@ -13,6 +17,9 @@ public class BookServiceImpl implements BookService {
 
 	@Autowired
 	BookRepository bookRepository;
+
+	@Autowired
+	AuthorRepository authorRepository;
 
 	@Override
 	public String createBookByAuthor(int authorId, BookEntity bookEntity) {
@@ -69,6 +76,19 @@ public class BookServiceImpl implements BookService {
 			return "Invalid Book ID and Author ID";
 		}
 
+	}
+
+	@Override
+	public List<BookEntity> searchBook(BookSearchDTO bookSearchDTO) {
+
+//		List<AuthorEntity> authorEntity = authorRepository.findByName(bookSearchDTO.getAuthorName());
+
+		List<BookEntity> bookEntity = bookRepository.searchBook(bookSearchDTO.getTitle(), bookSearchDTO.getAuthorName(),
+				bookSearchDTO.getCategory(), bookSearchDTO.getPrice(), bookSearchDTO.getPublisher());
+		
+		
+		
+		return bookEntity;
 	}
 
 }

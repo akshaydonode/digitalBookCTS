@@ -138,4 +138,6 @@ public class BookEntity {
 				+ active + ", logo=" + Arrays.toString(logo) + ", authorId=" + authorId + "]";
 	}
 
+	
+
 }
