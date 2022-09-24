@@ -1,0 +1,13 @@
+GET http://localhost:8080/api/home
+
+###
+GET http://localhost:8080/api/movies
+
+###
+
+
+GET http://localhost:8080/api/directors
+
+###
+
+
